@@ -12,7 +12,7 @@ RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY . /deliveries/backend/
 
-COPY entrypoint.sh /app/entrypoint.sh
+COPY entrypoint.sh /deliveries/backend/entrypoint.sh
 RUN chmod +x /deliveries/backend/entrypoint.sh
 
 EXPOSE 8000
