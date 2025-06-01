@@ -1,10 +1,11 @@
 import {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 import {ThemeProvider, createTheme, CssBaseline} from '@mui/material';
 import LoginPage from './components/LoginPage';
 import DeliveryReport from './components/DeliveryReport.tsx';
 import {LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
+import {checkAuth} from "./api/auth.ts";
 // Ваша существующая тема с добавленными глобальными стилями
 const darkTheme = createTheme({
     palette: {
@@ -42,35 +43,43 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem('access');
-        setIsAuthenticated(!!token);
+        const check = async () => {
+            try {
+                const res = await checkAuth();
+                setIsAuthenticated(!!res);
+            } catch {
+                setIsAuthenticated(false);
+            }
+        };
+        check();
     }, []);
 
+
     return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Router>
-          <Routes>
-            <Route path="/login" element={
-              !isAuthenticated ? (
-                <LoginPage onLogin={() => setIsAuthenticated(true)} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            } />
-            <Route path="/" element={
-              isAuthenticated ? (
-                <DeliveryReport onLogout={() => setIsAuthenticated(false)} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            } />
-          </Routes>
-        </Router>
-      </LocalizationProvider>
-    </ThemeProvider>
-  );
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline/>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <Router>
+                    <Routes>
+                        <Route path="/login" element={
+                            !isAuthenticated ? (
+                                <LoginPage onLogin={() => setIsAuthenticated(true)}/>
+                            ) : (
+                                <Navigate to="/" replace/>
+                            )
+                        }/>
+                        <Route path="/" element={
+                            isAuthenticated ? (
+                                <DeliveryReport onLogout={() => setIsAuthenticated(false)}/>
+                            ) : (
+                                <Navigate to="/login" replace/>
+                            )
+                        }/>
+                    </Routes>
+                </Router>
+            </LocalizationProvider>
+        </ThemeProvider>
+    );
 }
 
 export default App;
