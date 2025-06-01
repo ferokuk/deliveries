@@ -17,13 +17,15 @@ DEFAULT_PACKAGINGS = [
 ]
 DEFAULT_SERVICES = [
     'До клиента',
-    'Хрупкий груз',
-    'Мед.товары',
+    'Экспресс',
+    'Страховка',
 ]
 DEFAULT_CARGO_TYPES = [
     'Общий груз',
     'Опасный груз',
     'Рефрижераторный груз',
+    'Хрупкий груз',
+    'Мед.товары'
 ]
 
 # Для генерации случайного номера по ГОСТ
@@ -72,7 +74,7 @@ class Command(BaseCommand):
 
         for _ in range(count):
             transport_model = random.choice(transports)
-            departure = timezone.now() - timedelta(days=random.randint(0, 30), hours=random.randint(0, 23))
+            departure = timezone.now() - timedelta(days=random.randint(0, 90), hours=random.randint(0, 23))
             arrival = departure + timedelta(hours=random.randint(1, 48), minutes=random.randint(0, 59))
 
             delivery = Delivery.objects.create(

@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-
+from django.conf import settings
+from django.conf.urls.static import static
 from deliveries.views import DeliveryViewSet
 
 router = DefaultRouter()
@@ -25,3 +26,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('deliveries.urls')),  # всё, что внутри deliveries/urls.py
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -23,10 +23,11 @@ import {
 } from '@mui/material';
 import {DatePicker, LocalizationProvider} from '@mui/x-date-pickers';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
-import axios from "axios";
 import {format, parseISO} from 'date-fns';
 import {ru} from 'date-fns/locale';
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import api from "../api/api.ts";
+import {logout} from "../api/auth.ts";
 
 interface Delivery {
     id: number;
@@ -55,7 +56,6 @@ interface PaginationResponse<T> {
 
 type DeliveryPagination = PaginationResponse<Delivery>;
 type FilterPagination = PaginationResponse<FilterOption>;
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
 
 interface Props {
     onLogout: () => void;
@@ -102,9 +102,7 @@ const DeliveryReport: React.FC<Props> = ({onLogout}) => {
                     ...(filters.serviceType && {services: filters.serviceType}),
                 };
 
-                const access_token = localStorage.getItem('access');
-                const countRes = await axios.get<DeliveryPagination>(`${API_BASE_URL}/deliveries/`, {
-                    headers: {Authorization: `Bearer ${access_token}`},
+                const countRes = await api.get<DeliveryPagination>(`/deliveries/`, {
                     params: {...params, page: 1, page_size: 1}  // Минимальная нагрузка
                 });
 
@@ -117,34 +115,36 @@ const DeliveryReport: React.FC<Props> = ({onLogout}) => {
                     return;
                 }
                 const [deliveriesRes, chartRes, cargoRes, servicesRes] = await Promise.all([
-                    axios.get<DeliveryPagination>(`${API_BASE_URL}/deliveries/`, {
-                        headers: {Authorization: `Bearer ${access_token}`},
+                    api.get<DeliveryPagination>(`/deliveries/`, {
                         params
                     }).catch(e => {
                         if (e.response?.status === 401) {
-                            localStorage.removeItem('access');
-                            localStorage.removeItem('refresh');
                             onLogout();
                         }
                         console.error('Delivery error:', e);
                         return {data: {count: 0, results: []}};
                     }),
 
-                    axios.get<ChartData[]>(`${API_BASE_URL}/deliveries/summary/`, {
-                        headers: {Authorization: `Bearer ${access_token}`},
+                    api.get<ChartData[]>(`/deliveries/summary/`, {
                         params
                     }).catch(e => {
                         console.error(e)
                         return {data: []};
                     }),
 
-                    axios.get<FilterPagination>(`${API_BASE_URL}/cargo/`, {
-                        headers: {Authorization: `Bearer ${access_token}`},
-                    }).catch(() => ({data: {count: 0, results: []} as FilterPagination})),
+                    api.get<FilterPagination>(`/cargo/`, {}).catch(() => ({
+                        data: {
+                            count: 0,
+                            results: []
+                        } as FilterPagination
+                    })),
 
-                    axios.get<FilterPagination>(`${API_BASE_URL}/services/`, {
-                        headers: {Authorization: `Bearer ${access_token}`},
-                    }).catch(() => ({data: {count: 0, results: []} as FilterPagination}))
+                    api.get<FilterPagination>(`/services/`, {}).catch(() => ({
+                        data: {
+                            count: 0,
+                            results: []
+                        } as FilterPagination
+                    }))
                 ]);
 
 
@@ -203,10 +203,17 @@ const DeliveryReport: React.FC<Props> = ({onLogout}) => {
                         horizontal: 'right',
                     }}
                 >
-                    <MenuItem onClick={() => {
-                        handleMenuClose();
-                        onLogout();
-                    }}>
+                    <MenuItem
+                        onClick={async () => {
+                            handleMenuClose();
+                            try {
+                                await logout();
+                                onLogout();
+                            } catch (e) {
+                                console.error(e);
+                            }
+                        }}
+                    >
                         Выйти
                     </MenuItem>
                 </Menu>

@@ -8,13 +8,13 @@ import {
     Alert,
     useTheme,
 } from '@mui/material';
-import axios from "axios";
+import {login} from "../api/auth.ts";
 
 interface Props {
     onLogin: () => void;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string;
+
 const LoginPage: React.FC<Props> = ({onLogin}) => {
     const theme = useTheme();
     const [username, setUsername] = useState('');
@@ -26,23 +26,11 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
         setError('');
 
         try {
-            const response = await axios.post(
-                `${API_BASE_URL}/token/`,
-                {username, password},
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-
-
-            if (response.status != 200) throw new Error('Ошибка авторизации');
-            localStorage.setItem('access', response.data.access);
-            localStorage.setItem('refresh', response.data.refresh);
+            if (!username || !password) throw new Error('Введите логин и пароль');
+            await login({username, password});
             onLogin();
-        } catch (err) {
-            setError("Произошла ошибка при входе");
+        } catch (error: any) {
+            setError(`Произошла ошибка при входе: ${error.message}`);
         }
     };
 
