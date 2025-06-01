@@ -16,9 +16,9 @@ services:
       - backend/.env
     working_dir: /backend
     command:
-      - python3
-      - manage.py
-      - runserver
+      - gunicorn
+      - deliveries_test_task.wsgi:application
+      - --bind
       - 0.0.0.0:8000
     volumes:
       - ./backend:/backend

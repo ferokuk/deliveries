@@ -12,6 +12,7 @@ from deliveries.serializers import DeliverySerializer, PackagingTypeSerializer, 
 
 from deliveries.pagination import DeliveriesPageNumberPagination
 
+
 class DeliveryFilter(FilterSet):
     departure_datetime__gte = DateTimeFilter(field_name='departure_datetime', lookup_expr='date__gte')
     departure_datetime__lte = DateTimeFilter(field_name='departure_datetime', lookup_expr='date__lte')
@@ -19,6 +20,7 @@ class DeliveryFilter(FilterSet):
     class Meta:
         model = Delivery
         fields = ['departure_datetime__gte', 'departure_datetime__lte', 'cargo_type', 'services']
+
 
 class DeliveryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -77,6 +79,7 @@ class PackagingTypeViewSet(viewsets.ReadOnlyModelViewSet):
     authentication_classes = [JWTAuthentication]
     queryset = PackagingType.objects.all()
     serializer_class = PackagingTypeSerializer
+    ordering = ['id']
 
 
 class ServiceViewSet(viewsets.ReadOnlyModelViewSet):
@@ -84,6 +87,7 @@ class ServiceViewSet(viewsets.ReadOnlyModelViewSet):
     authentication_classes = [JWTAuthentication]
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+    ordering = ['id']
 
 
 class CargoTypeViewSet(viewsets.ReadOnlyModelViewSet):
@@ -91,3 +95,4 @@ class CargoTypeViewSet(viewsets.ReadOnlyModelViewSet):
     authentication_classes = [JWTAuthentication]
     queryset = CargoType.objects.all()
     serializer_class = CargoTypeSerializer
+    ordering = ['id']
