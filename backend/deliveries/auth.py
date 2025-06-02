@@ -12,3 +12,6 @@ class CookieJWTAuthentication(JWTAuthentication):
         except Exception:
             return None
 
+    def enforce_csrf(self, request):
+        return
+

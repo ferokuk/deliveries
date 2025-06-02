@@ -74,7 +74,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    os.getenv("DJANGO_ORIGIN"),
+    os.getenv("REACT_ORIGIN"),
+]
 CORS_ALLOWED_ORIGINS = [
     os.getenv("REACT_ORIGIN"),
     os.getenv("DJANGO_ORIGIN"),
