@@ -61,18 +61,18 @@ function App() {
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <Router>
                     <Routes>
-                        <Route path="/login" element={
-                            !isAuthenticated ? (
-                                <LoginPage onLogin={() => setIsAuthenticated(true)}/>
-                            ) : (
-                                <Navigate to="/" replace/>
-                            )
-                        }/>
                         <Route path="/" element={
                             isAuthenticated ? (
                                 <DeliveryReport onLogout={() => setIsAuthenticated(false)}/>
                             ) : (
                                 <Navigate to="/login" replace/>
+                            )
+                        }/>
+                        <Route path="/login" element={
+                            !isAuthenticated ? (
+                                <LoginPage onLogin={() => setIsAuthenticated(true)}/>
+                            ) : (
+                                <Navigate to="/" replace/>
                             )
                         }/>
                     </Routes>

@@ -7,6 +7,7 @@ import {
     Typography,
     Alert,
     useTheme,
+    CircularProgress, // 1. Импортируем спиннер
 } from '@mui/material';
 import {login} from "../api/auth.ts";
 
@@ -14,16 +15,17 @@ interface Props {
     onLogin: () => void;
 }
 
-
 const LoginPage: React.FC<Props> = ({onLogin}) => {
     const theme = useTheme();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false); // 2. Состояние загрузки
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
+        setLoading(true); // 3. Начинаем загрузку
 
         try {
             if (!username || !password) throw new Error('Введите логин и пароль');
@@ -31,6 +33,8 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
             onLogin();
         } catch (error: any) {
             setError(`Произошла ошибка при входе: ${error.message}`);
+        } finally {
+            setLoading(false); // 3. Останавливаем спиннер
         }
     };
 
@@ -42,18 +46,18 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 bgcolor: 'background.default',
-                p: 2, // Добавляем отступы по краям для мобильных устройств
+                p: 2,
             }}
         >
             <Paper
                 elevation={3}
                 sx={{
                     width: '100%',
-                    maxWidth: 448, // Оптимальная ширина по Material Design 3
+                    maxWidth: 448,
                     p: 4,
-                    borderRadius: 4, // Более округлые углы
+                    borderRadius: 4,
                     bgcolor: 'background.paper',
-                    boxShadow: theme.shadows[6], // Более выраженная тень
+                    boxShadow: theme.shadows[6],
                 }}
             >
                 <Typography
@@ -75,18 +79,19 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: 2, // Используем системные отступы
+                        gap: 2,
                     }}
                 >
                     <TextField
                         fullWidth
-                        variant="outlined" // Более современный вариант
+                        variant="outlined"
                         label="Логин"
                         InputProps={{
-                            sx: {borderRadius: 2} // Скругление поля ввода
+                            sx: {borderRadius: 2}
                         }}
                         value={username}
                         onChange={e => setUsername(e.target.value)}
+                        disabled={loading} // Блокируем поля при загрузке
                     />
 
                     <TextField
@@ -99,6 +104,7 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
                         }}
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        disabled={loading}
                     />
 
                     {error && (
@@ -106,7 +112,7 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
                             severity="error"
                             sx={{
                                 mt: 1,
-                                borderRadius: 2 // Скругление алерта
+                                borderRadius: 2
                             }}
                         >
                             {error}
@@ -117,16 +123,20 @@ const LoginPage: React.FC<Props> = ({onLogin}) => {
                         type="submit"
                         variant="contained"
                         size="large"
+                        disabled={loading} // Блокируем кнопку при загрузке
                         sx={{
                             mt: 2,
                             py: 1.5,
-                            borderRadius: 2, // Скругление кнопки
+                            borderRadius: 2,
                             fontSize: '1rem',
-                            textTransform: 'none', // Убираем капс
+                            textTransform: 'none',
                             fontWeight: 600,
                         }}
                     >
-                        Продолжить
+                        {loading
+                            ? <CircularProgress size={24} /> // 4. Показ спиннера вместо текста
+                            : 'Продолжить'
+                        }
                     </Button>
                 </Box>
             </Paper>
