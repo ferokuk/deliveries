@@ -21,4 +21,4 @@ echo "=> Populating database with 1000 entries…"
 python3 manage.py populate_db --count=1000
 
 echo "=> Starting server…"
-exec python3 manage.py runserver 0.0.0.0:8000
+exec gunicorn deliveries_test_task.wsgi:application --bind 0.0.0.0:8000

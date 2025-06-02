@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1da1043-5e8d-4145-a77e-053ccf9a23cf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries_test_task/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries_test_task/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/entrypoint.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +152,7 @@
       <workItem from="1748121703221" duration="10416000" />
       <workItem from="1748166842976" duration="27635000" />
       <workItem from="1748785069331" duration="6628000" />
-      <workItem from="1748798646942" duration="23407000" />
+      <workItem from="1748798646942" duration="23730000" />
     </task>
     <servers />
   </component>
