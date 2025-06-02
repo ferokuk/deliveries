@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1da1043-5e8d-4145-a77e-053ccf9a23cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +57,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "fix/login-redirect",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -155,7 +152,7 @@
       <workItem from="1748166842976" duration="27635000" />
       <workItem from="1748785069331" duration="6628000" />
       <workItem from="1748798646942" duration="23730000" />
-      <workItem from="1748862873355" duration="3231000" />
+      <workItem from="1748862873355" duration="4279000" />
     </task>
     <servers />
   </component>
