@@ -86,7 +86,19 @@ CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_DOMAIN = ".onrender.com"
 CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 ROOT_URLCONF = 'deliveries_test_task.urls'
 
 TEMPLATES = [
