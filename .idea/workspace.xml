@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1da1043-5e8d-4145-a77e-053ccf9a23cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/api.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries/management/commands/populate_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries/management/commands/populate_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries/tests/test_deliveries.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries_test_task/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries_test_task/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/deliveries_test_task/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/deliveries_test_task/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/entrypoint.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/DeliveryReport.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/DeliveryReport.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes/PrivateRoute.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +151,7 @@
       <workItem from="1748121703221" duration="10416000" />
       <workItem from="1748166842976" duration="27635000" />
       <workItem from="1748785069331" duration="6628000" />
-      <workItem from="1748798646942" duration="19339000" />
+      <workItem from="1748798646942" duration="22562000" />
     </task>
     <servers />
   </component>
